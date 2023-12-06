@@ -1,5 +1,5 @@
 import { InputArea } from "../Molecules/InputArea"
-
+import { Input } from '../Atoms/Input'
 export const AddView = () => {
     return(
         <div>
@@ -7,6 +7,10 @@ export const AddView = () => {
                 <InputArea label="Title" type="text" />
                 <InputArea label="Description" type="text"/>
                 <InputArea label="Date due" type="date" />
+                <div className="w-80 flex flex-row justify-between">
+                    <Input type="submit" value="Save" color="green"/>
+                    <Input type="reset" value="Clear" color="red" />
+                </div>
             </form>
         </div>
     )
