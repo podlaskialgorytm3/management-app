@@ -1,30 +1,35 @@
 import { SidePanel } from "./components/SidePanel";
 import { MainContent } from "./components/MainContent";
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 function App() {
-  const [projects,setProjects] = useState()
+  const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    date: ''
+    date: '',
+    id: 0
   });
-  
+
   const enablingAddingView = () => {
     setView('adding')
   }
-const handleInput = (e) => {
+  const handleInput = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
+      id: nanoid()
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    setProjects((prevProjects) => (
+      [...prevProjects,formData]
+    ))
   };
 
   return (
