@@ -30,6 +30,7 @@ function App() {
     setProjects((prevProjects) => (
       [...prevProjects,formData]
     ))
+    console.log(projects)
   };
 
   return (
