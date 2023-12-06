@@ -1,8 +1,13 @@
+import { SidePanel } from "./components/SidePanel";
+import { MainContent } from "./components/MainContent";
+
+
 function App() {
   return (
-    <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
-    </>
+    <div className="flex flex-row">
+      <SidePanel/>
+      <MainContent/>
+    </div>
   );
 }
 
