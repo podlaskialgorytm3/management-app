@@ -7,9 +7,14 @@ const valueOfView = ["adding","project","no-selected"];
 function App() {
   const [projects,setProjects] = useState()
   const [view,setView] = useState("no-selected")
+
+  const enablingAddingView = () => {
+    setView('adding')
+  }
+
   return (
     <div className="flex flex-row">
-      <SidePanel/>
+      <SidePanel onSelect={enablingAddingView}/>
       <MainContent data={projects} view={view}/>
     </div>
   );
