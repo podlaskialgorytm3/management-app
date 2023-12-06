@@ -1,9 +1,9 @@
 import { InputArea } from "../Molecules/InputArea"
 import { Input } from '../Atoms/Input'
-export const AddView = ({onChange}) => {
+export const AddView = ({onChange,handleSubmit}) => {
     return(
         <div>
-            <form method="POST" className="mt-4 text-right flex flex-col items-center justify-around h-80 w-80">
+            <form method="POST" className="mt-4 text-right flex flex-col items-center justify-around h-80 w-80" onSubmit={handleSubmit}>
                 <InputArea label="Title" type="text" onChange={onChange} name={"title"}/>
                 <InputArea label="Description" type="text" onChange={onChange} name={"description"}/>
                 <InputArea label="Date due" type="date" onChange={onChange} name={"date"}/>
