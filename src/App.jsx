@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="flex flex-row">
       <SidePanel onSelect={enablingAddingView}/>
-      <MainContent data={projects} view={view}/>
+      <MainContent data={projects} view={view} onSelect={enablingAddingView}/>
     </div>
   );
 }
