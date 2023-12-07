@@ -16,7 +16,13 @@ function App() {
     const fetchData = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:5000/api/dane');
-             console.log(response.data)
+            const tab = []
+            response.data.forEach((project) => tab.push({
+                  id: project[0],
+                  title: project[1],
+                  description: project[2]
+            }))
+            setProjects(tab)
         } catch (error) {
             console.error('Błąd pobierania danych:', error.stack);
         }
