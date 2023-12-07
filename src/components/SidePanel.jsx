@@ -2,7 +2,7 @@ import { Button } from "./Atoms/Button"
 import { SidePanelContent } from './Organism/SidePanelContent'
 import { Title } from "./Atoms/Title"
 
-export const SidePanel = ({onSelect}) => {
+export const SidePanel = ({onSelect,data}) => {
     return(
     <>
         <SidePanelContent>
@@ -11,7 +11,11 @@ export const SidePanel = ({onSelect}) => {
                 <Button onClick={onSelect}>+ Add project!</Button>
             </>
             <p>
-                Examples projects ... 
+                {data.length > 0 ? 
+                data.map((project) => (
+                    <p>{project.title}</p>
+                ))
+                 : "No projects added."}
             </p>
         </SidePanelContent>
     </>

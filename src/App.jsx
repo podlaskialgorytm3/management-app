@@ -7,10 +7,11 @@ function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
   const [formData, setFormData] = useState({
+    id: 0,
     title: '',
     description: '',
     date: '',
-    id: 0
+    tasks: []
   });
 
   const enablingAddingView = () => {
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <div className="flex flex-row">
-      <SidePanel onSelect={enablingAddingView}/>
+      <SidePanel onSelect={enablingAddingView} data={projects}/>
       <MainContent data={projects} view={view} onSelect={enablingAddingView} onChange={handleInput} handleSubmit={handleSubmit}/>
     </div>
   );
