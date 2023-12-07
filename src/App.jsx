@@ -46,7 +46,18 @@ function App() {
       ...prevProject,
       tasks: [...prevProject.tasks, currentTask.current]
     }))
-    console.log(currentProject)
+    let projectIndex = projects.findIndex(project => project.id === currentProject.id)
+    if(projectIndex !== -1){
+      setProjects((prevProjects) => [
+        ...prevProjects.slice(0,projectIndex),
+        {
+          ...prevProjects[projectIndex],
+          tasks: [...prevProjects[projectIndex].tasks,currentTask.current]
+        },
+        ...prevProjects.slice(projectIndex + 1)
+      ])
+    }
+    console.log(projects)
   }
 
   const handleSubmit = (e) => {
@@ -55,7 +66,6 @@ function App() {
       [...prevProjects,formData]
     ))
     resetForm.current.reset()
-
   };
 
   return (
