@@ -2,7 +2,6 @@ import { SidePanel } from "./components/SidePanel";
 import { MainContent } from "./components/MainContent";
 import { useState,useRef } from 'react';
 import { nanoid } from 'nanoid';
-
 const simpleFormData = {
   id: 0,
   title: '',
@@ -10,8 +9,6 @@ const simpleFormData = {
   date: '',
   tasks: []
 }
-
-
 function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
@@ -60,6 +57,17 @@ function App() {
     resetForm.current.reset()
   }
 
+  const handleDeleting = () => {
+    let projectIndex = projects.findIndex(project => project.id === currentProject.id)
+    setView("no-selected")
+    if(projectIndex !== -1){
+      setProjects((prevProjects) => [
+        ...prevProjects.slice(0,projectIndex),
+        ...prevProjects.slice(projectIndex + 1)
+      ])
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setProjects((prevProjects) => (
@@ -79,6 +87,7 @@ function App() {
                    handleTask = {handleTask}
                    handleTaskForm = {handleTaskForm}
                    resetForm={resetForm}
+                   onDelete={handleDeleting}
                    onChange={handleInput} 
                    />
     </div>
