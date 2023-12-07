@@ -57,6 +57,7 @@ function App() {
         ...prevProjects.slice(projectIndex + 1)
       ])
     }
+    resetForm.current.reset()
   }
 
   const handleSubmit = (e) => {
@@ -77,8 +78,8 @@ function App() {
                    handleSubmit={handleSubmit} 
                    handleTask = {handleTask}
                    handleTaskForm = {handleTaskForm}
-                   onChange={handleInput} 
                    resetForm={resetForm}
+                   onChange={handleInput} 
                    />
     </div>
   );
