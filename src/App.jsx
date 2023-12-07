@@ -4,10 +4,19 @@ import { useState,useRef,useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 
+const simpleData = {
+  title: '',
+  description: '',
+  date: '',
+  id: '',
+  tasks: []
+}
+
+
 function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(simpleData);
   const [currentProject,setCurrentProject] = useState(null);
   const currentTask = useRef(null);
   const resetForm = useRef(null);
