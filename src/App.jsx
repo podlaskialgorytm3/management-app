@@ -20,7 +20,9 @@ function App() {
             response.data.forEach((project) => tab.push({
                   id: project[0],
                   title: project[1],
-                  description: project[2]
+                  description: project[2],
+                  date: 0,
+                  tasks: []
             }))
             setProjects(tab)
         } catch (error) {
