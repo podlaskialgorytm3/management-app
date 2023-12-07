@@ -5,7 +5,7 @@ import { InputArea } from "../Molecules/InputArea"
 import { Task } from "../Atoms/Task"
 import { nanoid } from 'nanoid';
 
-export const ProjectView = ({currentProject,handleTask,handleTaskForm,resetForm,onDelete}) => {
+export const ProjectView = ({currentProject,handleTask,handleTaskForm,resetForm,onDelete,onTaskDelete}) => {
     return(
         <div className="flex flex-col h-1/2 w-2/3 relative">
             <Title>{currentProject.title}</Title>
@@ -17,7 +17,14 @@ export const ProjectView = ({currentProject,handleTask,handleTaskForm,resetForm,
             </form>
             <div className="mt-4">
                 {currentProject.tasks.map((task) => (
-                    <Task key={nanoid()}>{task}</Task>
+                    <Task key={nanoid()}>
+                    {task}
+                    <img 
+                    src="src/assets/delete-red.png" 
+                    className="absolute w-7 inline-block top-1 right-0 mr-2"
+                    onClick={() => onTaskDelete(task)}
+                    />
+                    </Task>
                 ))}
             </div>
         </div>

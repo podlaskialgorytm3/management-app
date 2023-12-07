@@ -68,6 +68,25 @@ function App() {
     }
   }
 
+  const handleTaskDeleting = (chosenTask) => {
+    let projectIndex = projects.findIndex(project => project.id === currentProject.id)
+    if(projectIndex !== -1){
+      let updatedTasks = currentProject.tasks.filter(task => task != chosenTask)
+      setCurrentProject((prevProject) => ({
+        ...prevProject,
+        tasks: updatedTasks,
+      }));
+      setProjects((prevProjects) => ([
+        ...prevProjects.slice(0,projectIndex),
+        {
+          ...prevProjects[projectIndex],
+          tasks: updatedTasks
+        },
+        ...prevProjects.slice(projectIndex + 1)
+      ]))
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setProjects((prevProjects) => (
@@ -88,6 +107,7 @@ function App() {
                    handleTaskForm = {handleTaskForm}
                    resetForm={resetForm}
                    onDelete={handleDeleting}
+                   onTaskDelete={handleTaskDeleting}
                    onChange={handleInput} 
                    />
     </div>
