@@ -12,6 +12,11 @@ export const ProjectView = ({currentProject,handleTask,handleTaskForm}) => {
             <form method="POST" onSubmit={handleTaskForm}>
                 <InputArea type="text" label="TASK" onChange={handleTask}/>
             </form>
+            <div>
+                {currentProject.tasks.map((task) => (
+                    <p>{task}</p>
+                ))}
+            </div>
         </div>
     )
 }

@@ -57,7 +57,6 @@ function App() {
         ...prevProjects.slice(projectIndex + 1)
       ])
     }
-    console.log(projects)
   }
 
   const handleSubmit = (e) => {
