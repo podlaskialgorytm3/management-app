@@ -16,11 +16,17 @@ function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
   const [formData, setFormData] = useState(simpleFormData);
+  const [currentProject,setCurrentProject] = useState(null)
   const resetForm = useRef(null);
 
   const enablingAddingView = () => {
     setView('adding')
   }
+  const setProjectView = (projectObject) => {
+    setView("project")
+    setCurrentProject(projectObject)
+  }
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -40,8 +46,15 @@ function App() {
 
   return (
     <div className="flex flex-row">
-      <SidePanel onSelect={enablingAddingView} data={projects}/>
-      <MainContent data={projects} view={view} onSelect={enablingAddingView} onChange={handleInput} handleSubmit={handleSubmit} resetForm={resetForm}/>
+      <SidePanel onSelect={enablingAddingView} data={projects} selectView={setProjectView}/>
+      <MainContent data={projects}
+                   view={view} 
+                   onSelect={enablingAddingView} 
+                   currentProject={currentProject}
+                   onChange={handleInput} 
+                   handleSubmit={handleSubmit} 
+                   resetForm={resetForm}
+                   />
     </div>
   );
 }
