@@ -10,13 +10,13 @@ export const SidePanel = ({onSelect,data}) => {
                 <Title>YOUR PROJECTS</Title>
                 <Button onClick={onSelect}>+ Add project!</Button>
             </>
-            <p>
+            <div>
                 {data.length > 0 ? 
                 data.map((project) => (
-                    <p>{project.title}</p>
+                    <p key={project.id}>{project.title}</p>
                 ))
                  : "No projects added."}
-            </p>
+            </div>
         </SidePanelContent>
     </>
     )

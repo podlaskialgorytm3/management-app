@@ -1,18 +1,22 @@
 import { SidePanel } from "./components/SidePanel";
 import { MainContent } from "./components/MainContent";
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import { nanoid } from 'nanoid';
+
+const simpleFormData = {
+  id: 0,
+  title: '',
+  description: '',
+  date: '',
+  tasks: []
+}
+
 
 function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
-  const [formData, setFormData] = useState({
-    id: 0,
-    title: '',
-    description: '',
-    date: '',
-    tasks: []
-  });
+  const [formData, setFormData] = useState(simpleFormData);
+  const resetForm = useRef(null);
 
   const enablingAddingView = () => {
     setView('adding')
@@ -31,12 +35,13 @@ function App() {
     setProjects((prevProjects) => (
       [...prevProjects,formData]
     ))
+    resetForm.current.reset()
   };
 
   return (
     <div className="flex flex-row">
       <SidePanel onSelect={enablingAddingView} data={projects}/>
-      <MainContent data={projects} view={view} onSelect={enablingAddingView} onChange={handleInput} handleSubmit={handleSubmit}/>
+      <MainContent data={projects} view={view} onSelect={enablingAddingView} onChange={handleInput} handleSubmit={handleSubmit} resetForm={resetForm}/>
     </div>
   );
 }
