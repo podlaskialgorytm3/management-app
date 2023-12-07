@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import mysql.connector
 
 db_connection = mysql.connector.connect(
@@ -11,6 +12,7 @@ db_connection = mysql.connector.connect(
 cursor = db_connection.cursor()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/dane')
 def pobierz_dane():

@@ -1,21 +1,30 @@
 import { SidePanel } from "./components/SidePanel";
 import { MainContent } from "./components/MainContent";
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import { nanoid } from 'nanoid';
-const simpleFormData = {
-  id: 0,
-  title: '',
-  description: '',
-  date: '',
-  tasks: []
-}
+import axios from 'axios';
+
 function App() {
   const [projects,setProjects] = useState([])
   const [view,setView] = useState("no-selected")
-  const [formData, setFormData] = useState(simpleFormData);
+  const [formData, setFormData] = useState({});
   const [currentProject,setCurrentProject] = useState(null);
   const currentTask = useRef(null);
   const resetForm = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:5000/api/dane');
+             console.log(response.data)
+        } catch (error) {
+            console.error('Błąd pobierania danych:', error.stack);
+        }
+    };
+
+    fetchData();
+  }, []);
+
 
   const enablingAddingView = () => {
     setView('adding')
